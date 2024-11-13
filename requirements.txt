@@ -1,0 +1,4 @@
+Flask==3.1.0
+Flask-Session==0.8.0
+openai==1.54.4
+python-dotenv
