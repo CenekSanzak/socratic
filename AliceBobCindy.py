@@ -4,6 +4,13 @@ from dotenv import load_dotenv
 load_dotenv()
 client = OpenAI()
 
+with open("prompts/socrates.txt", "r") as file:
+    SOCRATES_PROMPT = file.read()
+with open("prompts/theaetetus.txt", "r") as file:
+    THEAETETUS_PROMPT = file.read()
+with open("prompts/plato.txt", "r") as file:
+    PLATO_PROMPT = file.read()
+
 
 class SocraticGPT:
     def __init__(self, role, n_round=10, model="gpt-4o-mini"):
@@ -21,10 +28,7 @@ class SocraticGPT:
     def set_question(self, question):
         if self.role == "Socrates":
             self.history.append(
-                {
-                    "role": "system",
-                    "content": f'Socrates and Theaetetus are two AI assistants for Tony to solve challenging problems. The problem statement is as follows: "{question}".\n\nSocrates and Theaetetus will engage in multi-round dialogue to solve the problem together for Tony. Their discussion should follow a structured problem-solving approach, such as formalizing the problem, developing high-level strategies for solving the problem, reusing subproblem solutions where possible, critically evaluating each other\'s reasoning, avoiding arithmetic and logical errors, and effectively communicating their ideas. \n\	p.\n\nTheir ultimate objective is to come to a correct solution through reasoned discussion. To present their final answer, they should adhere to the following guidelines:\n\nState the problem they were asked to solve.\nPresent any assumptions they made in their reasoning.\nDetail the logical steps they took to arrive at their final answer.\n\nConclude with a final statement that directly answers the problem.\nTheir final answer should be concise and free from logical errors, such as false dichotomy, hasty generalization, and circular reasoning. \n\nIt should begin with the phrase: "Here is our @final answer: [insert answer]". If they encounter any issues with the validity of their answer, they should re-evaluate their reasoning and calculations.\n\nNow, suppose that you are {self.role}. Please discuss the problem with {self.other_role}!',
-                }
+                {"role": "system", "content": SOCRATES_PROMPT + question}
             )
             self.history.append(
                 {
@@ -36,7 +40,7 @@ class SocraticGPT:
             self.history.append(
                 {
                     "role": "system",
-                    "content": f'Socrates and Theaetetus are two AI assistants for Tony to solve challenging problems. The problem statement is as follows: "{question}".\n\nSocrates and Theaetetus will engage in multi-round dialogue to solve the problem together for Tony. Their discussion should follow a structured problem-solving approach, such as formalizing the problem, developing high-level strategies for solving the problem, reusing subproblem solutions where possible, critically evaluating each other\'s reasoning, avoiding arithmetic and logical errors, and effectively communicating their ideas. \n\	p.\n\nTheir ultimate objective is to come to a correct solution through reasoned discussion. To present their final answer, they should adhere to the following guidelines:\n\nState the problem they were asked to solve.\nPresent any assumptions they made in their reasoning.\nDetail the logical steps they took to arrive at their final answer.\n\nConclude with a final statement that directly answers the problem.\nTheir final answer should be concise and free from logical errors, such as false dichotomy, hasty generalization, and circular reasoning. \n\nIt should begin with the phrase: "Here is our @final answer: [insert answer]". If they encounter any issues with the validity of their answer, they should re-evaluate their reasoning and calculations.\n\nNow, suppose that you are {self.role}. Please discuss the problem with {self.other_role}!',
+                    "content": THEAETETUS_PROMPT + question,
                 }
             )
             self.history.append(
@@ -49,7 +53,7 @@ class SocraticGPT:
             self.history.append(
                 {
                     "role": "system",
-                    "content": f'Socrates and Theaetetus are two AI assistants for Tony to solve challenging problems. The problem statement is as follows: "{question}".\n\nSocrates and Theaetetus will engage in multi-round dialogue to solve the problem together for Tony. Their discussion should follow a structured problem-solving approach, such as formalizing the problem, developing high-level strategies for solving the problem, reusing subproblem solutions where possible, critically evaluating each other\'s reasoning, avoiding arithmetic and logical errors, and effectively communicating their ideas. \n\	p.\n\nTheir ultimate objective is to come to a correct solution through reasoned discussion. To present their final answer, they should adhere to the following guidelines:\n\nState the problem they were asked to solve.\nPresent any assumptions they made in their reasoning.\nDetail the logical steps they took to arrive at their final answer.\n\nConclude with a final statement that directly answers the problem.\nTheir final answer should be concise and free from logical errors, such as false dichotomy, hasty generalization, and circular reasoning. \n\nIt should begin with the phrase: "Here is our @final answer: [insert answer]". If they encounter any issues with the validity of their answer, they should re-evaluate their reasoning and calculations.\n\nNow as a proofreader, Plato, your task is to read through the dialogue between Socrates and Theaetetus and identify any errors they made.',
+                    "content": PLATO_PROMPT + question,
                 }
             )
             self.history.append(
