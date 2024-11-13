@@ -3,6 +3,11 @@
 Cloned from [SocraticAI](https://github.com/RunzheYang/SocraticAI) and fixed and improved.
 Discover Socratic AI, a groundbreaking application that transforms problem-solving by leveraging the power of multiple Large Language Model-based agents in Socratic dialogue. Socratic AI elevates artificial intelligence, providing a distinctive and engaging experience that empowers users to uncover comprehensive and well-reasoned solutions to their challenges, all while remaining free from prompt engineering.
 
+## Changing Characteristics
+
+Just change the prompts under the prompts folder to change the characteristics of the AI.
+
+
 ## Understanding the Socratic Method
 
 The term "Socratic" is derived from the name of the ancient Greek philosopher Socrates. Socratic dialogue is a cooperative argumentative dialogue that aims to stimulate critical thinking and elicit ideas and underlying assumptions. It involves a series of questions and answers designed to examine complex issues from various perspectives. The goal is not to win an argument or establish a single "correct" answer, but to collaboratively explore the subject matter, challenge preconceptions, and enhance understanding.

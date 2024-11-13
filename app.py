@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session
 from flask_session import Session
 
-from AliceBobCindy import *
+from Socratic import *
 
 app = Flask(__name__)
 app.config["SESSION_TYPE"] = "filesystem"
@@ -183,7 +183,7 @@ def chat():
         session_state.plato.set_question(session_state.question)
         response = generate_response(user_input, mode="question")
 
-    if session_state.wait_tony:
+    elif session_state.wait_tony:
         feedback = user_input
         session_state.socrates.add_feedback(
             session_state.all_questions_to_tony, feedback
@@ -195,7 +195,8 @@ def chat():
         session_state.all_questions_to_tony = ""
         session_state.wait_tony = False
         response = generate_response(user_input, mode="feedback")
-
+    else:
+        return jsonify([])
     return jsonify([{"role": "system", "response": response}])
 
 
